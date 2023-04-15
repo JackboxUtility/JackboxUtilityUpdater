@@ -86,7 +86,7 @@ class AutoUpdater {
         bool found = a["name"].contains(getPlatformName());
         return found;
       }).first["browser_download_url"];
-      await DownloaderService.downloadPatch("./app", thisPlatformUrl, callback);
+      await DownloaderService.downloadPatch(context, "./app", thisPlatformUrl, callback);
     }
   }
 }

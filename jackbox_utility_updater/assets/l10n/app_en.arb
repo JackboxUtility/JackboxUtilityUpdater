@@ -1,0 +1,7 @@
+{
+    "initializing": "Initializing",
+    "downloading": "Downloading",
+    "extracting": "Extracting",
+    "launching": "Launching",
+    "finalizing": "Finalizing"
+}

@@ -41,6 +41,11 @@ dependencies:
   archive: 3.3.5
   lottie: 2.2.0
   package_info_plus: 3.1.0
+  bitsdojo_window: 0.1.5
+
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +63,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

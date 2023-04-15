@@ -1,0 +1,7 @@
+{
+    "initializing": "Initialisation",
+    "downloading": "Téléchargement",
+    "extracting": "Extraction",
+    "launching": "Lancement",
+    "finalizing": "Finalisation"
+}
