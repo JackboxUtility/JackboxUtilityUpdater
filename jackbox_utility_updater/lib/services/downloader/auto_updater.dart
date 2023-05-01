@@ -40,8 +40,14 @@ class AutoUpdater {
       if (!await utilityInFiles()) {
         return _updateUrl + "/" + latestRelease["id"].toString();
       } else {
-      final currentVersion =
-        await File("./app/" + getPatcherVersionFile()).readAsString();
+        String currentVersion = "";
+        if (await File("./app/" + getPatcherVersionFile()).exists()) {
+          currentVersion =
+              await File("./app/" + getPatcherVersionFile()).readAsString();
+        } else {
+          currentVersion =
+              await File("./" + getPatcherVersionFile()).readAsString();
+        }
         print(latestRelease["name"] + " " + currentVersion);
         if (latestRelease["name"] != currentVersion &&
             latestRelease["name"] != currentVersion.split("+")[0]) {
@@ -68,8 +74,9 @@ class AutoUpdater {
     return "jackbox_patcher.version";
   }
 
-  static Future<bool> utilityInFiles() {
-    return File("./app/${getPatcherVersionFile()}").exists();
+  static Future<bool> utilityInFiles() async {
+    return await File("./${getPatcherVersionFile()}").exists() ||
+        await File("./app/${getPatcherVersionFile()}").exists();
   }
 
   // Download update if an update is available
@@ -86,7 +93,9 @@ class AutoUpdater {
         bool found = a["name"].contains(getPlatformName());
         return found;
       }).first["browser_download_url"];
-      await DownloaderService.downloadPatch(context, "./app", thisPlatformUrl, callback);
+      await DownloaderService.downloadPatch(
+          context, "./app", thisPlatformUrl, callback);
+      await File("./app/jackbox_patcher.version").writeAsString(jsonData["name"]);
     }
   }
 }
