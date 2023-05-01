@@ -107,7 +107,8 @@ class _HomeWidgetState extends State<HomeWidget> {
     if (Platform.isWindows) {
       Process.run("./app/jackbox_patcher.exe", []);
     }else{
-      Process.run("./app/jackbox_patcher", []);
+      await Process.run("chmod", ["u+x","./app/JackboxUtility"]);
+      Process.run("./app/JackboxUtility", []);
     }
     Future.delayed(Duration(seconds: 1), () {
       exit(0);
